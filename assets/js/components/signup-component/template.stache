@@ -1,0 +1,78 @@
+<!-- Sign-up Modal -->
+<div id="sign-up-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="mySignUpModal" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="mySignUpModal">{{i18n.createAccount}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="user_create">{{i18n.username}}</label>
+                    <input type="text" class="form-control" id="user_create" {($value)}="userCreate" ($blur)="usernameCheckFunc()" {{inputDisabled}} placeholder="{{i18n.username}}" autocomplete="off" />
+                    {{#if userCreateError}}
+                        <span class="red-text">{{i18n.usernameNotAvailError}}</span>
+                    {{/if}}
+                    {{#if userCreateLengthError}}
+                        <span class="red-text">{{i18n.usernameLengthError}}</span>
+                    {{/if}}
+                </div>
+                <div class="form-group">
+                    <label for="email_create">{{i18n.email}}</label>
+                    <input type="email" class="form-control" id="email_create" {($value)}="emailCreate" ($blur)="emailCheckFunc()" {{inputDisabled}} placeholder="{{i18n.email}}" autocomplete="off" />
+                    {{#if emailCreateError}}
+                        <span class="red-text">{{i18n.emailAlreadyUsedError}}</span>
+                    {{/if}}
+                    {{#if emailCreateInvalidError}}
+                        <span class="red-text">{{i18n.emailInvalidError}}</span>
+                    {{/if}}
+                </div>
+                <div class="form-group">
+                    <label for="security_question_create">{{i18n.securityQuestion}}</label>
+                    <select id="security_question_create" {($value)}="securityQuestionCreate" {{inputDisabled}} class="selectpicker form-control">
+                        <option value="{{i18n.securityQuestion1}}">{{i18n.securityQuestion1}}</option>
+                        <option value="{{i18n.securityQuestion2}}">{{i18n.securityQuestion2}}</option>
+                        <option value="{{i18n.securityQuestion3}}">{{i18n.securityQuestion3}}</option>
+                        <option value="{{i18n.securityQuestion4}}">{{i18n.securityQuestion4}}</option>
+                        <option value="{{i18n.securityQuestion5}}">{{i18n.securityQuestion5}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="security_answer_create">{{i18n.securityAnswer}}</label>
+                    <input type="text" class="form-control" id="security_answer_create" {($value)}="securityAnswerCreate" ($blur)="lengthAnswerFunc()" {{inputDisabled}} placeholder="{{i18n.securityAnswer}}" autocomplete="off" />
+                    {{#if securityAnswerError}}
+                        <span class="red-text">{{i18n.securityAnswerLengthError}}</span>
+                    {{/if}}
+                </div>
+                <div class="form-group">
+                    <label for="password_1_create">{{i18n.password}}</label>
+                    <input type="password" class="form-control" id="password_1_create" {($value)}="passwordCreate" ($keyup)="strongPassFunc(@element.val)" {{inputDisabled}} placeholder="{{i18n.password}}" autocomplete="off" />
+                    {{#if passwordStrengthText}}
+                        <span class="{{passwordStrengthColor}}">{{passwordStrengthText}}</span>
+                    {{/if}}
+                </div>
+                <div class="form-group">
+                    <label for="password_2_create">{{i18n.retypePassword}}</label>
+                    <input type="password" class="form-control" id="password_2_create" {($value)}="passwordRetypedCreate" ($keyup)="comparePasswordFunc(@element.val)" {{inputDisabled}} ($enter)="signUpFunc()" placeholder="{{i18n.retypePassword}}" autocomplete="off" />
+                    {{#if passwordMismatchError}}
+                        <span class="red-text">{{i18n.singUpPasswordMismatchError}}</span>
+                    {{/if}}
+                </div>
+                {{#if secondFactorVisible}}
+                    <div id="ask-for-second-factor" class="form-group">
+                        <label for="second_factor_login">{{i18n.secondFactor}}</label>
+                        <input type="text" class="form-control" id="second_factor_login" {($value)}="secondFactorSignUp" ($enter)="signUpFunc()" {{secondFactorDisabled}} placeholder="{{i18n.secondFactor}}" autocomplete="off" />
+                        <span class="black-text">{{i18n.secondFactorSent}}</span>
+                    </div>
+                {{/if}}
+                {{#if generalError}}
+                    <p class="red-text">{{i18n.singUpUnknownError}}</p>
+                {{/if}}
+            </div>
+            <div class="modal-footer">
+                <button id="button_for_sign-up" type="button" class="btn btn-custom btn-sm" ($click)="signUpFunc()" {{buttonRunning}}>{{#if buttonRunning}}<i class="fa fa-spin fa-spinner"></i>{{else}}{{i18n.createAccountButton}}{{/if}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Sign-up Modal -->

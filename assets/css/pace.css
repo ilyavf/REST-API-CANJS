@@ -1,0 +1,86 @@
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+    -webkit-perspective: 24rem;
+    -moz-perspective: 24rem;
+    -ms-perspective: 24rem;
+    -o-perspective: 24rem;
+    perspective: 24rem;
+
+    z-index: 2000;
+    position: fixed;
+    height: 12rem;
+    width: 12rem;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.pace.pace-inactive .pace-progress {
+    display: none;
+}
+.pace .pace-progress {
+    position: absolute;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    height: 12rem;
+    width: 12rem !important;
+    line-height: 12rem;
+    font-size: 4rem;
+    border-radius: 50%;
+    background: #D40E1D;
+    color: #fff;
+    font-family: "Helvetica Neue", sans-serif;
+    font-weight: 100;
+    text-align: center;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    -webkit-transform: translate3d(0, 0, 0) !important;;
+    -moz-transform: translate3d(0, 0, 0) !important;;
+    -ms-transform: translate3d(0, 0, 0) !important;;
+    -o-transform: translate3d(0, 0, 0) !important;;
+    transform: translate3d(0, 0, 0) !important;
+
+    animation: pace-theme-center-circle linear 1 2s;
+}
+
+.pace .pace-progress:after {
+    content: attr(data-progress-text);
+    display: block;
+}
+body > * {
+    opacity: 0;
+
+    -webkit-transition: opacity 250ms ease-in-out;
+    -moz-transition: opacity 250ms ease-in-out;
+    -ms-transition: opacity 250ms ease-in-out;
+    -o-transition: opacity 250ms ease-in-out;
+    transition: opacity 250ms ease-in-out;
+}
+.pace-running > * {
+    opacity: 0;
+}
+.pace-done > * {
+    opacity: 1;
+}
+.pace.pace-active {
+    opacity: 1;
+}
+@keyframes pace-theme-center-circle {
+    0%   {opacity: 0;}
+    50%  {opacity: 0;}
+    100% {opacity: 1;}
+}

@@ -1,0 +1,71 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-brand"><span class="ultra">{{i18n.brandWord}}</span></div>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {{^if isLoggedIn}}
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#forgot-password-modal">{{i18n.forgotPassword}}</a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#sign-up-modal">{{i18n.createAccount}}</a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#login-modal">{{i18n.login}}</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">{{i18n.selectLanguage}} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            {{#each languages}}
+                                <li><a href="#" ($click)="switchLang(code)">{{name}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </li>
+                {{else}}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">{{i18n.userSettings}} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" data-toggle="modal" data-target="#settings-modal">{{i18n.settings}}</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" ($click)="logoutFunc()">{{i18n.logout}}</a></li>
+                        </ul>
+                    </li>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br><br>
+<br><br>
+<br><br>
+
+{{#switch page}}
+    {{#case ''}}
+
+    {{/case}}
+    {{#case 'dashboard'}}
+        {{#if isLoggedIn}}
+            <h2>Dashboard</h2>
+            <dashboard></dashboard>
+        {{else}}
+            <p>Sorry, you are not authorized</p>
+        {{/if}}
+    {{/case}}
+{{/switch}}
+
+{{^if isLoggedIn}}
+    <login-component {(is-logged-in)}="isLoggedIn"></login-component>
+    <signup-component></signup-component>
+    <forgot-password-component></forgot-password-component>
+{{else}}
+    <settings-component></settings-component>
+{{/if}}

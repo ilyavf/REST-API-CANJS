@@ -1,0 +1,42 @@
+<!-- Login Modal -->
+<div id="login-modal" class="modal {{#if isShown}}visible{{/if}}" tabindex="-1" role="dialog" aria-labelledby="myLoginModal" data-backdrop="static">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myLoginModal">{{i18n.login}}</h4>
+			</div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="user_login">{{i18n.username}}</label>
+          <input type="text" class="form-control" id="user_login" {($value)}="userLogin" {{inputDisabled}} placeholder="{{i18n.username}}" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="password_login">{{i18n.password}}</label>
+          <input type="password" class="form-control" id="password_login" {($value)}="passwordLogin" ($enter)="loginFunc()" {{inputDisabled}} placeholder="{{i18n.password}}" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <input type="checkbox" id="checkbox_share_login" {{inputDisabled}}>
+            <label for="checkbox_share_login">
+              {{i18n.shareLogin}}
+            </label>
+          </div>
+        </div>
+        {{#if secondFactorVisible}}
+        <div id="ask-for-second-factor" class="form-group">
+          <label for="second_factor_login">{{i18n.secondFactor}}</label>
+          <input type="text" class="form-control" id="second_factor_login" {($value)}="secondFactorLogin" ($enter)="loginFunc()" {{secondFactorDisabled}} placeholder="{{i18n.secondFactor}}" autocomplete="off" />
+        </div>
+        {{/if}}
+        {{#if loginErrorVisible}}
+        <p class="red-text">{{i18n.generalLoginError}}</p>
+        {{/if}}
+      </div>
+      <div class="modal-footer">
+        <button id="button_for_login" type="button" ($click)="loginFunc()" {{buttonRunning}} class="btn btn-custom btn-sm">{{#if buttonRunning}}<i class="fa fa-spin fa-spinner"></i>{{else}}{{i18n.loginButton}}{{/if}}</button>
+      </div>
+		</div>
+	</div>
+</div>
+<!-- END Login Modal -->
