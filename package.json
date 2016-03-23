@@ -1,0 +1,52 @@
+{
+  "name": "php-rest-api-js",
+  "version": "0.1.0",
+  "description": "RESTful API in PHP and a JS client with basic SPA start",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "bootstrap-select": "^1.10.0",
+    "can": "^2.3.20",
+    "cryptojslib": "git+https://github.com/rapidDevGroup/CryptoJS.git",
+    "font-awesome": "^4.5.0",
+    "i18n": "git+https://github.com/requirejs/i18n.git",
+    "jquery": "^2.2.1",
+    "pace": "git+https://github.com/HubSpot/pace.git",
+    "requirejs": "^2.1.22",
+    "steal": "^0.15.0",
+    "text": "git+https://github.com/requirejs/text.git"
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rapidDevGroup/PHP-REST-API-JS.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/rapidDevGroup/PHP-REST-API-JS/issues"
+  },
+  "homepage": "https://github.com/rapidDevGroup/PHP-REST-API-JS#readme",
+  "system": {
+    "paths": {
+      "components/*": "assets/js/components/*.js",
+      "rest-api": "assets/js/restfulapi.js",
+      "i18n-nls/main": "assets/js/nls/main.js",
+      "config": "assets/js/config.js",
+      "bootstrap.css": "node_modules/bootstrap/dist/css/bootstrap.css"
+    },
+    "map": {
+      "cryptojs.core": "cryptojslib/components/core",
+      "cryptojs.x64": "cryptojslib/components/x64-core",
+      "cryptojs.sha512": "cryptojslib/components/sha512",
+      "cryptojs.base64": "cryptojslib/components/enc-base64",
+      "cryptojs.hmac": "cryptojslib/components/hmac",
+      "cryptojs.pbkdf2": "cryptojslib/components/pbkdf2"
+    }
+  }
+}
